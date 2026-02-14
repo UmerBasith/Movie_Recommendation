@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import pandas as pd
 import ast
@@ -10,6 +10,10 @@ API_KEY = "8265bd1679663a7ea12ac168da84d2e8" # Example key, replace with your ow
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/')
+def home():
+    return send_file('index.html')
 
 # --- Load and prepare data ---
 movies = pd.read_csv('tmdb_5000_movies.csv')
